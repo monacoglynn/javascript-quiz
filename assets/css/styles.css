@@ -1,0 +1,25 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px;
+}
+
+main p {
+    margin: 10px;
+    padding: 10px;
+}
