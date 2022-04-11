@@ -5,32 +5,39 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    margin: 5px;
+    padding: 12px;
 }
 
 main {
+    padding: 100px;
+    margin: 10px 250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
+    background-color: #585858;
+    border-radius: 10px;
 }
 
 
 h1 {
     font-size: 2rem;
+    color: #dfdfdf;
     font-weight: bold;
     margin: 10px;
 }
 
 h2 {
+    color: #dfdfdf;
     font-size: 1.5rem;
     font-weight: bold;
-    margin: 50px 30px 60px 30px;
+    margin: 10px 30px 60px 30px;
 }
 
 main p {
     margin: 10px;
+    color: #dfdfdf;
     padding: 10px;
 }
 
@@ -46,6 +53,7 @@ button {
     padding: 15px;
     border-radius: 10px;
     font-size: 1.2rem;
-    background-color: rgb(187, 73, 187);
+    background-color: #482353;
     color: white;
+    box-shadow: 4px 4px #504f4fac;
 }

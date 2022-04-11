@@ -2,6 +2,13 @@ var startButton = document.querySelector('.start-button');
 var timer = document.querySelector('.timer');
 var title = document.querySelector('.splash');
 var welcome = document.querySelector('.welcome');
+var main = document.body.children[1];
+var h2El = document.createElement('h2');
+var btn1 = document.createElement('button');
+var btn2 = document.createElement('button');
+var btn3 = document.createElement('button');
+var btn4 = document.createElement('button');
+var questionDiv = document.createElement('div');
 
 var question1 = {
     question: 'How many keys does a piano have?',
@@ -41,14 +48,6 @@ function countdown() {
 }
 
 function question(quiz) {
-    var main = document.body.children[1];
-    var h2El = document.createElement('h2');
-    var btn1 = document.createElement('button');
-    var btn2 = document.createElement('button');
-    var btn3 = document.createElement('button');
-    var btn4 = document.createElement('button');
-    var questionDiv = document.createElement('div');
-
     main.appendChild(h2El);
     main.appendChild(questionDiv);
     main.children[4].appendChild(btn1);
@@ -63,8 +62,19 @@ function question(quiz) {
     btn3.textContent = quiz.ans3;
     btn4.textContent = quiz.ans4;
 
-    // generate the right answer.
+    // create event listener for buttons.
+    //create right answer button.
 }
+
+function nextQuestion(quiz) {
+    h2El.textContent = quiz.question;
+    btn1.textContent = quiz.ans1;
+    btn2.textContent = quiz.ans2;
+    btn3.textContent = quiz.ans3;
+    btn4.textContent = quiz.ans4;
+
+}
+
 
 function startQuiz() {
     timer.textContent = 75;
