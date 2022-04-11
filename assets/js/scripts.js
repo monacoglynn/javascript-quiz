@@ -26,6 +26,12 @@ function startQuiz() {
     countdown();
     startButton.setAttribute('style', 'display: none;');
     title.setAttribute('style', 'display: none;');
+    welcome.setAttribute('style', 'display: none;');
+
+}
+
+function question1() {
+
 }
 
 
