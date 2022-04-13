@@ -3,6 +3,7 @@ var timer = document.querySelector('.timer');
 var title = document.querySelector('.splash');
 var infoText = document.querySelector('.info-text');
 var questionDiv = document.querySelector('.quiz-box');
+var visitHighScore = document.querySelector('.show-score');
 var main = document.body.children[1];
 var newH2 = document.createElement('h2');
 
@@ -27,23 +28,16 @@ var listOfQs = [{
         question: 'With all of the strings tune, how much tension weight does a typical grand piano hold?',
         choices: ['45,000 lbs', '10,000 lbs', '20,000 lbs', '8,800 lbs'],
         answer: '45,000 lbs'
+    },
+    {
+        question: 'What instrument did piano the invention of the piano make somewhat irrelevant?',
+        choices: ['Keychord', 'Harpchord', 'Harpsichord', 'Playchord'],
+        answer: 'Harpsichord'
     }
 ]
 var currentQuestion;
 var highScore = [];
 var timeLeft;
-
-//get stats from local storage
-function init() {
-    var storedHighScore = JSON.parse(localStorage.getItem('highScore'))
-    // localStorage.setItem("saveHighscore", JSON.stringify(array))
-    if (storedHighScore !== null) {
-        highScore = storedHighScore;
-    }
-}
-
-init();
-
 
 
 function countdown() {
@@ -69,20 +63,23 @@ function countdown() {
 //write function to display high scores after quiz is finished.
 function showHighScore() {
     var initialsInput = document.querySelector('input').value;
-    highScore.push(initialsInput, Number(timer.textContent));
-    console.log(highScore)
-    questionDiv.innerHTML = '';
-    var hallOfFame = document.createElement('ol');
-    questionDiv.appendChild(hallOfFame);
+    if (!initialsInput) {
+        alert('please enter initials');
+        enterNameHighScore();
+    } else {
+        highScore.push(initialsInput, Number(timer.textContent));
+        console.log(highScore)
+        questionDiv.innerHTML = '';
+        var hallOfFame = document.createElement('ol');
+        questionDiv.appendChild(hallOfFame);
 
-    for (var i = 0; i < highScore.length; i += 2) {
-        var newLi = document.createElement('li');
-        newLi.textContent = highScore[i] + ' : ' + highScore[i + 1];
-        questionDiv.appendChild(newLi);
+        for (var i = 0; i < highScore.length; i += 2) {
+            var newLi = document.createElement('li');
+            newLi.textContent = highScore[i] + ' : ' + highScore[i + 1];
+            questionDiv.appendChild(newLi);
+        }
     }
-
-
-
+    localStorage.setItem('highScore', JSON.stringify(highScore));
 
 }
 
@@ -113,7 +110,7 @@ function resolveAnswer(event) {
     } else {
         //decrement time remaining
         console.log("incorrect")
-        timeLeft -= 5;
+        timeLeft -= 7;
     }
     currentQuestion++;
     if (currentQuestion < listOfQs.length) {

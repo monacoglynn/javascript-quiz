@@ -1,3 +1,7 @@
+:root {
+    --font: 'Plus Jakarta Sans', sans-serif;
+}
+
 body {
     background-color: #929292;
 }
@@ -8,8 +12,29 @@ header {
     padding: 12px;
 }
 
+a {
+    text-decoration: none;
+    color: #9250a8;
+    font-family: var(--font);
+    text-shadow: 1px .5px #dfdfdf;
+    letter-spacing: 1px;
+}
+
+a:hover {
+    color: #d57ef1;
+}
+
+header p span,
+header p {
+    font-family: var(--font);
+    color: #dfdfdf;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-style: italic;
+}
+
 main {
-    padding: 100px;
+    padding: 75px;
     margin: 10px 250px;
     display: flex;
     flex-direction: column;
@@ -18,37 +43,52 @@ main {
     gap: 20px;
     background-color: #585858;
     border-radius: 10px;
+    box-shadow: 3px 5px #6e6e6eac;
 }
 
 
 h1 {
     font-size: 2rem;
+    font-family: var(--font);
     color: #dfdfdf;
     font-weight: bold;
+    font-style: italic;
     margin: 10px;
 }
 
 h2 {
     color: #dfdfdf;
+    font-family: var(--font);
     font-size: 1.5rem;
     font-weight: bold;
+    font-style: italic;
     margin: 10px 30px 60px 30px;
 }
 
 main p {
+    letter-spacing: 1px;
+    font-family: var(--font);
+    font-weight: 300;
+    font-style: italic;
     margin: 10px;
     color: #dfdfdf;
     padding: 10px;
 }
 
 main div {
-    width: 60%;
+    width: 67%;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+
+
 }
 
 button {
+    font-family: var(--font);
+    letter-spacing: .5px;
     margin: 12px;
     padding: 15px;
     border-radius: 10px;
@@ -56,4 +96,22 @@ button {
     background-color: #482353;
     color: white;
     box-shadow: 4px 4px #504f4fac;
+    text-shadow: 1px 1.5px #e8d7f487;
+
+}
+
+button:hover {
+    background-color: #9250a8;
+    box-shadow: 4px 4px #c8c7c7ac;
+
+}
+
+li {
+    list-style-type: none;
+    font-family: var(--font);
+    font-size: 2.5rem;
+    color: #dfdfdf;
+    text-shadow: 2px 2.5px #deccebaf;
+    font-weight: 700;
+    font-style: italic;
 }
