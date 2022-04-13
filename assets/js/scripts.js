@@ -24,7 +24,9 @@ var listOfQs = [{
         answer: '1700s'
     },
     {
-        question: ''
+        question: 'With all of the strings tune, how much tension weight does a typical grand piano hold?',
+        choices: ['45,000 lbs', '10,000 lbs', '20,000 lbs', '8,800 lbs'],
+        answer: '45,000 lbs'
     }
 ]
 var currentQuestion;
@@ -65,7 +67,25 @@ function countdown() {
 }
 
 //write function to display high scores after quiz is finished.
-// function showHighScore() {}
+function showHighScore() {
+    var initialsInput = document.querySelector('input').value;
+    highScore.push(initialsInput, Number(timer.textContent));
+    console.log(highScore)
+    questionDiv.innerHTML = '';
+    var hallOfFame = document.createElement('ol');
+    questionDiv.appendChild(hallOfFame);
+
+    for (var i = 0; i < highScore.length; i += 2) {
+        var newLi = document.createElement('li');
+        newLi.textContent = highScore[i] + ' : ' + highScore[i + 1];
+        questionDiv.appendChild(newLi);
+    }
+
+
+
+
+}
+
 
 function enterNameHighScore() {
     questionDiv.innerHTML = '';
@@ -73,11 +93,11 @@ function enterNameHighScore() {
     questionDiv.appendChild(newH2);
     var highScoreForm = document.createElement('input');
     questionDiv.appendChild(highScoreForm);
-    var newBtn = document.createElement('button')
-    newBtn.textContent = 'Submit'
-    newBtn.addEventListener('click', showHighScore)
-    questionDiv.appendChild(newBtn);
 
+    var newBtn = document.createElement('button');
+    newBtn.textContent = 'Submit';
+    questionDiv.appendChild(newBtn);
+    newBtn.addEventListener('click', showHighScore)
 }
 
 function resolveAnswer(event) {
@@ -89,7 +109,7 @@ function resolveAnswer(event) {
     if (userPick == listOfQs[currentQuestion].answer) {
         //nice well done
         console.log("correct")
-        timeLeft += 4;
+
     } else {
         //decrement time remaining
         console.log("incorrect")
@@ -108,11 +128,13 @@ function resolveAnswer(event) {
 function showQuestion() {
     // questionDiv
     questionDiv.innerHTML = '';
-
+    // this generates the h2 that contains the question for the quiz.
     newH2.textContent = listOfQs[currentQuestion].question;
     questionDiv.appendChild(newH2);
 
+    // this loop creates all the question buttons
     for (i = 0; i < listOfQs[currentQuestion].choices.length; i++) {
+        console.log()
         var newBtn = document.createElement("button");
         newBtn.textContent = listOfQs[currentQuestion].choices[i];
         newBtn.addEventListener('click', resolveAnswer);
@@ -122,11 +144,14 @@ function showQuestion() {
 
 
 function startQuiz() {
+    // sets the timer and starts the countdown.
     timer.textContent = 75;
     countdown();
+    // hides the first items shown on the page
     startButton.setAttribute('style', 'display: none;');
     title.setAttribute('style', 'display: none;');
     infoText.setAttribute('style', 'display: none;');
+    // set the question index to 0 the first question
     currentQuestion = 0;
     showQuestion();
     // remove last questions
