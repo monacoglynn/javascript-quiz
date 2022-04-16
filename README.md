@@ -11,4 +11,6 @@ When you click the start quiz button, I cleared the pages content using innerHTM
 
 Once a choice as been picks, resolveAnswer runs to check that the click events textContent matches with the key 'answer'. This function also checks if we are at the last question. If so, the page will prompt the user for their initials and then show them the list of high scores.
 
+https://monacoglynn.github.io/piano-quiz/index.html
+
 ![splash-page](./assets/images/splash-page.png)

@@ -194,41 +194,6 @@ function startQuiz() {
 
 }
 
-// function restartQuiz() {
-//     header.setAttribute('style', 'flex-direction: row;');
-//     visitHighScore.setAttribute('style', 'display: inline;');
-//     var hidePlayAgain = document.querySelector('.play-again');
-//     hidePlayAgain.setAttribute('style', 'display: none');
-//     timer.textContent = 60;
-//     countdown();
-//     currentQuestion = 0;
-//     showQuestion();
-// }
 
 
 startButton.addEventListener('click', startQuiz);
-
-// visitHighScore.addEventListener('click', function (event) {
-//     event.preventDefault();
-//     visitHighScore.setAttribute('style', 'display: none;');
-//     playAgain.textContent = 'Play again?';
-//     playAgain.setAttribute('class', 'play-again');
-//     playAgain.setAttribute('style', 'display: inline;');
-//     header.appendChild(playAgain);
-//     header.setAttribute('style', 'flex-direction: row-reverse;')
-//     playAgain.addEventListener('click', restartQuiz);
-//     questionDiv.innerHtML = '';
-//     console.log(highScore)
-//     //clear page and show high scores
-//     questionDiv.innerHTML = '';
-//     var hallOfFame = document.createElement('ol');
-//     questionDiv.appendChild(hallOfFame);
-
-//     for (var i = 0; i < highScore.length; i += 2) {
-//         var newLi = document.createElement('li');
-//         newLi.textContent = highScore[i] + ' : ' + highScore[i + 1];
-//         questionDiv.appendChild(newLi);
-//     }
-
-
-// })
