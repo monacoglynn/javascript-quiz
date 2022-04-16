@@ -141,10 +141,12 @@ function resolveAnswer(event) {
     if (userPick == listOfQs[currentQuestion].answer) {
         //nice well done
         console.log("correct")
+        alert('you got it right!')
     } else {
         //decrement time remaining
         console.log("incorrect")
         timeLeft -= 7;
+        alert('INCORRECT');
     }
     currentQuestion++;
     if (currentQuestion < listOfQs.length) {
@@ -152,6 +154,7 @@ function resolveAnswer(event) {
     } // show high score entry screen
     else {
         enterNameHighScore();
+
     }
 }
 

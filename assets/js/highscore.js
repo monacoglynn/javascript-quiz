@@ -8,6 +8,7 @@ var main = document.body.children[1];
 var newH2 = document.createElement('h2');
 var header = document.querySelector('.navbar');
 var playAgain = document.createElement('a');
+var clearScores = document.querySelector('.clear-scores');
 
 function init() {
 
@@ -31,3 +32,11 @@ function init() {
 }
 
 init();
+
+function resetScores() {
+    console.log('i cleeek');
+    localStorage.setItem('highScore', JSON.stringify([]));
+    questionDiv.innerHTML = '';
+}
+
+clearScores.addEventListener('click', resetScores);
