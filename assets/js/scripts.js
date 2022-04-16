@@ -6,6 +6,10 @@ var questionDiv = document.querySelector('.quiz-box');
 var visitHighScore = document.querySelector('.show-score');
 var main = document.body.children[1];
 var newH2 = document.createElement('h2');
+var header = document.querySelector('.navbar');
+var playAgain = document.createElement('a');
+
+
 
 
 
@@ -33,42 +37,48 @@ var listOfQs = [{
         question: 'What instrument did piano the invention of the piano make somewhat irrelevant?',
         choices: ['Keychord', 'Harpchord', 'Harpsichord', 'Playchord'],
         answer: 'Harpsichord'
+    },
+    {
+        question: 'Sound on the piano is produced when _____ hit the strings',
+        choices: ['Keys', 'Fingers', 'Guitar picks', 'Hammers'],
+        answer: 'Hammers'
+    },
+    {
+        question: 'Which ones of these is NOT a keyboard instrument?',
+        choices: ['Organ', 'Rhodes', 'Celeste', 'Theremin'],
+        answer: 'Theremin'
     }
 ]
 var currentQuestion;
 var highScore = [];
 var timeLeft;
 
+function init() {
+    var previousHighScore = JSON.parse(localStorage.getItem('highScore'));
+    if (previousHighScore == null) {
+        console.log('No scores');
+    } else {
+        highScore = previousHighScore;
+    }
 
-function countdown() {
-    timeLeft = 75;
-    var timeInterval = setInterval(function () {
-        timeLeft--;
-        if (timeLeft > 0 && currentQuestion < listOfQs.length) {
-            timer.textContent = timeLeft;
-            // if wrong answer
-            // if you win stop timer
-        } else if (timeLeft = 0) {
-            timer.textContent = 0;
-            console.log('you lose');
-            clearInterval(timeInterval);
-        } else {
-            console.log('you win!')
-            clearInterval(timeInterval);
-
-        }
-    }, 1000);
 }
+
+init();
+
 
 //write function to display high scores after quiz is finished.
 function showHighScore() {
     var initialsInput = document.querySelector('input').value;
+    // check if the form has text in it
     if (!initialsInput) {
         alert('please enter initials');
+        // if not, alert and stay on page
         enterNameHighScore();
     } else {
+        // if yes, add entered text and score to highScore array.
         highScore.push(initialsInput, Number(timer.textContent));
         console.log(highScore)
+        //clear page and show high scores
         questionDiv.innerHTML = '';
         var hallOfFame = document.createElement('ol');
         questionDiv.appendChild(hallOfFame);
@@ -85,16 +95,41 @@ function showHighScore() {
 
 
 function enterNameHighScore() {
+    // clear the question box
     questionDiv.innerHTML = '';
+    // add text and a form to enter initials for high score.
     newH2.textContent = 'Please enter your initials';
     questionDiv.appendChild(newH2);
     var highScoreForm = document.createElement('input');
     questionDiv.appendChild(highScoreForm);
 
+    // create a submit button to submit score
     var newBtn = document.createElement('button');
     newBtn.textContent = 'Submit';
     questionDiv.appendChild(newBtn);
     newBtn.addEventListener('click', showHighScore)
+}
+
+function countdown() {
+    timeLeft = 60;
+    var timeInterval = setInterval(function () {
+        timeLeft--;
+        console.log(timeLeft);
+        if (timeLeft > 0 && currentQuestion < listOfQs.length) {
+            timer.textContent = timeLeft;
+            // if wrong answer
+            // if you win stop timer
+        } else if (timeLeft == 0) {
+            timer.textContent = 0;
+            console.log('you lose');
+            clearInterval(timeInterval);
+            enterNameHighScore();
+        } else {
+            console.log('you finished!');
+            clearInterval(timeInterval);
+
+        }
+    }, 1000);
 }
 
 function resolveAnswer(event) {
@@ -106,7 +141,6 @@ function resolveAnswer(event) {
     if (userPick == listOfQs[currentQuestion].answer) {
         //nice well done
         console.log("correct")
-
     } else {
         //decrement time remaining
         console.log("incorrect")
@@ -119,7 +153,6 @@ function resolveAnswer(event) {
     else {
         enterNameHighScore();
     }
-
 }
 
 function showQuestion() {
@@ -127,6 +160,7 @@ function showQuestion() {
     questionDiv.innerHTML = '';
     // this generates the h2 that contains the question for the quiz.
     newH2.textContent = listOfQs[currentQuestion].question;
+    newH2.setAttribute('style', 'width: 100%');
     questionDiv.appendChild(newH2);
 
     // this loop creates all the question buttons
@@ -142,12 +176,9 @@ function showQuestion() {
 
 function startQuiz() {
     // sets the timer and starts the countdown.
-    timer.textContent = 75;
+    timer.textContent = 60;
     countdown();
     // hides the first items shown on the page
-    startButton.setAttribute('style', 'display: none;');
-    title.setAttribute('style', 'display: none;');
-    infoText.setAttribute('style', 'display: none;');
     // set the question index to 0 the first question
     currentQuestion = 0;
     showQuestion();
@@ -163,7 +194,41 @@ function startQuiz() {
 
 }
 
-
+// function restartQuiz() {
+//     header.setAttribute('style', 'flex-direction: row;');
+//     visitHighScore.setAttribute('style', 'display: inline;');
+//     var hidePlayAgain = document.querySelector('.play-again');
+//     hidePlayAgain.setAttribute('style', 'display: none');
+//     timer.textContent = 60;
+//     countdown();
+//     currentQuestion = 0;
+//     showQuestion();
+// }
 
 
 startButton.addEventListener('click', startQuiz);
+
+// visitHighScore.addEventListener('click', function (event) {
+//     event.preventDefault();
+//     visitHighScore.setAttribute('style', 'display: none;');
+//     playAgain.textContent = 'Play again?';
+//     playAgain.setAttribute('class', 'play-again');
+//     playAgain.setAttribute('style', 'display: inline;');
+//     header.appendChild(playAgain);
+//     header.setAttribute('style', 'flex-direction: row-reverse;')
+//     playAgain.addEventListener('click', restartQuiz);
+//     questionDiv.innerHtML = '';
+//     console.log(highScore)
+//     //clear page and show high scores
+//     questionDiv.innerHTML = '';
+//     var hallOfFame = document.createElement('ol');
+//     questionDiv.appendChild(hallOfFame);
+
+//     for (var i = 0; i < highScore.length; i += 2) {
+//         var newLi = document.createElement('li');
+//         newLi.textContent = highScore[i] + ' : ' + highScore[i + 1];
+//         questionDiv.appendChild(newLi);
+//     }
+
+
+// })
