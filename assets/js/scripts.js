@@ -3,11 +3,10 @@ var timer = document.querySelector('.timer');
 var title = document.querySelector('.splash');
 var infoText = document.querySelector('.info-text');
 var questionDiv = document.querySelector('.quiz-box');
+var isRight = document.querySelector('.is-right');
 var visitHighScore = document.querySelector('.show-score');
-var main = document.body.children[1];
 var newH2 = document.createElement('h2');
 var header = document.querySelector('.navbar');
-var playAgain = document.createElement('a');
 
 
 
@@ -77,20 +76,11 @@ function showHighScore() {
     } else {
         // if yes, add entered text and score to highScore array.
         highScore.push(initialsInput, Number(timer.textContent));
-        console.log(highScore)
-        //clear page and show high scores
-        questionDiv.innerHTML = '';
-        var hallOfFame = document.createElement('ol');
-        questionDiv.appendChild(hallOfFame);
+        console.log(highScore);
+        localStorage.setItem('highScore', JSON.stringify(highScore));
+        location.href = './highScore.html';
 
-        for (var i = 0; i < highScore.length; i += 2) {
-            var newLi = document.createElement('li');
-            newLi.textContent = highScore[i] + ' : ' + highScore[i + 1];
-            questionDiv.appendChild(newLi);
-        }
     }
-    localStorage.setItem('highScore', JSON.stringify(highScore));
-
 }
 
 
@@ -107,7 +97,7 @@ function enterNameHighScore() {
     var newBtn = document.createElement('button');
     newBtn.textContent = 'Submit';
     questionDiv.appendChild(newBtn);
-    newBtn.addEventListener('click', showHighScore)
+    newBtn.addEventListener('click', showHighScore);
 }
 
 function countdown() {
@@ -137,16 +127,20 @@ function resolveAnswer(event) {
     var userPick = event.target.textContent
     console.log(userPick)
     // console.log(this)
+    var newP = document.createElement('p');
+    isRight.textContent = '';
 
     if (userPick == listOfQs[currentQuestion].answer) {
         //nice well done
         console.log("correct")
-        alert('you got it right!')
+        newP.textContent = 'YOU GOT IT RIGHT!'
+        isRight.appendChild(newP);
     } else {
         //decrement time remaining
         console.log("incorrect")
+        newP.textContent = 'YOU GOT IT WRONG! YAY';
+        isRight.appendChild(newP);
         timeLeft -= 7;
-        alert('INCORRECT');
     }
     currentQuestion++;
     if (currentQuestion < listOfQs.length) {
