@@ -35,7 +35,9 @@ init();
 
 function resetScores() {
     console.log('i cleeek');
+    // clears the localStorage
     localStorage.setItem('highScore', JSON.stringify([]));
+    // clears the page of previously posted high scores.
     questionDiv.innerHTML = '';
 }
 

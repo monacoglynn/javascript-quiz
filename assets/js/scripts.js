@@ -1,18 +1,18 @@
-var startButton = document.querySelector('.start-button');
-var timer = document.querySelector('.timer');
-var title = document.querySelector('.splash');
-var infoText = document.querySelector('.info-text');
-var questionDiv = document.querySelector('.quiz-box');
-var isRight = document.querySelector('.is-right');
-var visitHighScore = document.querySelector('.show-score');
-var newH2 = document.createElement('h2');
-var header = document.querySelector('.navbar');
+const startButton = document.querySelector('.start-button');
+const timer = document.querySelector('.timer');
+const title = document.querySelector('.splash');
+const infoText = document.querySelector('.info-text');
+const questionDiv = document.querySelector('.quiz-box');
+const isRight = document.querySelector('.is-right');
+const visitHighScore = document.querySelector('.show-score');
+const newH2 = document.createElement('h2');
+const header = document.querySelector('.navbar');
 
 
 
 
 
-var listOfQs = [{
+const listOfQs = [{
         question: 'How many keys does a piano have?',
         choices: ['80 keys', '88 keys', '100 keys', '75 keys'],
         answer: '88 keys'
@@ -48,12 +48,12 @@ var listOfQs = [{
         answer: 'Theremin'
     }
 ]
-var currentQuestion;
-var highScore = [];
-var timeLeft;
+let currentQuestion;
+let highScore = [];
+let timeLeft;
 
 function init() {
-    var previousHighScore = JSON.parse(localStorage.getItem('highScore'));
+    let previousHighScore = JSON.parse(localStorage.getItem('highScore'));
     if (previousHighScore == null) {
         console.log('No scores');
     } else {
@@ -67,7 +67,7 @@ init();
 
 //write function to display high scores after quiz is finished.
 function showHighScore() {
-    var initialsInput = document.querySelector('input').value;
+    let initialsInput = document.querySelector('input').value;
     // check if the form has text in it
     if (!initialsInput) {
         alert('please enter initials');
@@ -90,11 +90,11 @@ function enterNameHighScore() {
     // add text and a form to enter initials for high score.
     newH2.textContent = 'Please enter your initials';
     questionDiv.appendChild(newH2);
-    var highScoreForm = document.createElement('input');
+    const highScoreForm = document.createElement('input');
     questionDiv.appendChild(highScoreForm);
 
     // create a submit button to submit score
-    var newBtn = document.createElement('button');
+    const newBtn = document.createElement('button');
     newBtn.textContent = 'Submit';
     questionDiv.appendChild(newBtn);
     newBtn.addEventListener('click', showHighScore);
@@ -102,7 +102,7 @@ function enterNameHighScore() {
 
 function countdown() {
     timeLeft = 60;
-    var timeInterval = setInterval(function () {
+    let timeInterval = setInterval(() => {
         timeLeft--;
         console.log(timeLeft);
         if (timeLeft > 0 && currentQuestion < listOfQs.length) {
@@ -124,10 +124,10 @@ function countdown() {
 
 function resolveAnswer(event) {
 
-    var userPick = event.target.textContent
+    let userPick = event.target.textContent
     console.log(userPick)
     // console.log(this)
-    var newP = document.createElement('p');
+    let newP = document.createElement('p');
     isRight.textContent = '';
 
     if (userPick == listOfQs[currentQuestion].answer) {
@@ -156,10 +156,7 @@ function showQuestion() {
     // questionDiv
     questionDiv.innerHTML = '';
     // this generates the h2 that contains the question for the quiz.
-    newH2.textContent = listOfQs[currentQuestion].question;
-    newH2.setAttribute('style', 'width: 100%');
-    questionDiv.appendChild(newH2);
-
+    questionDiv.innerHTML = `<h2 style="width: 100%">${listOfQs[currentQuestion].question}</h2>`
     // this loop creates all the question buttons
     for (i = 0; i < listOfQs[currentQuestion].choices.length; i++) {
         console.log()
@@ -175,20 +172,9 @@ function startQuiz() {
     // sets the timer and starts the countdown.
     timer.textContent = 60;
     countdown();
-    // hides the first items shown on the page
     // set the question index to 0 the first question
     currentQuestion = 0;
     showQuestion();
-    // remove last questions
-    // add next question.
-    //right answer
-    // wrong answer
-
-    //total up points and send to local storage.
-
-    //set up high score page
-
-
 }
 
 
