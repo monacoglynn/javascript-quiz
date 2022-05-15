@@ -135,11 +135,13 @@ function resolveAnswer(event) {
         console.log("correct")
         newP.textContent = 'YOU GOT IT RIGHT!'
         isRight.appendChild(newP);
+        setTimeout(() => isRight.innerHTML = '', 1000)
     } else {
         //decrement time remaining
         console.log("incorrect")
-        newP.textContent = 'YOU GOT IT WRONG! YAY';
+        newP.textContent = 'BUMMER! THAT WAS INCORRECT!';
         isRight.appendChild(newP);
+        setTimeout(() => isRight.innerHTML = '', 1000)
         timeLeft -= 7;
     }
     currentQuestion++;
