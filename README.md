@@ -10,4 +10,4 @@ This is a timed quiz game about pianos. Test your knowledge with this fun quiz. 
 
 ## Demonstration
 
-![quiz-gif](./assets/images/Piano%20Quiz!.gif)
+![quiz-gif](./assets/images/Piano%20Quiz.gif)
