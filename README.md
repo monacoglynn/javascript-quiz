@@ -1,5 +1,5 @@
 # piano quiz
-https://monacoglynn.github.io/piano-quiz/index.html
+https://tuglynn.github.io/piano-quiz/index.html
 
 ## Technologies used
 
